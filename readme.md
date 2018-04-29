@@ -1,0 +1,1 @@
+run "angular-http-server -p 82" in terminal window in VS Code.

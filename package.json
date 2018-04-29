@@ -1,0 +1,17 @@
+{
+  "name": "productprototype",
+  "version": "1.0.0",
+  "description": "Refactor Yellow Jersey product page",
+  "main": "index.html",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Fricker",
+  "license": "ISC"
+}
