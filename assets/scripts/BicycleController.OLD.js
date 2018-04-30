@@ -1,4 +1,4 @@
-app.controller('BicycleController', ['$scope', '$log', '$http', '$q', '$window', 'CustomServices',
+module.controller('BicycleController', ['$scope', '$log', '$http', '$q', '$window', 'CustomServices',
     function($scope, $log, $http, $q, $window, CustomServices) {
 
         $scope.Basket = {

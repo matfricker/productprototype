@@ -4,8 +4,10 @@
 <head>
     <link rel="stylesheet" href="assets/styles/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="assets/scripts/scripts.js"></script>
-    <script src="assets/scripts/BicycleController.OLD.js"></script>
+    <script src="assets/scripts/app.js"></script>
+    <script src="assets/scripts/genericservices.js"></script>    
+    <script src="assets/scripts/maincontroller.js"></script>
+    <script src="assets/scripts/bicyclecontroller.js"></script>
 </head>
 
 <body ng-controller="MainController"></body>
@@ -18,7 +20,7 @@
     <div class="row" ng-hide="CanCrossSell && HideBicycleForm">
         <div class="small-12 medium-12 large-8 columns main-form">
             <div class="body-header">
-                <h2>Bicycle Insurance</h2>
+                <h2>Bicycle Insurance {{message}}</h2>
             </div>
             <form name="BicycleQuoteForm" method="post" novalidate ng-submit="BicycleQuoteForm.$valid && ValidateForm(BicycleQuoteForm) && SendForm()">
                 <div class="row columns">
@@ -49,7 +51,7 @@
                     </div>
                     <p ng-show="Basket.BicycleQuotes[0].Bicycles.length > 0">You currently have <strong>{{Basket.BicycleQuotes[0].Bicycles.length}} {{BicycleText}}</strong>, with a combined value of <strong>£{{TotalBicycleValue}}</strong> on the current quote.</p>
                     <div class="callout bicycles">
-                        <div class="callout bicycle" ng-repeat="Bicycle in Basket.BicycleQuotes[0].Bicycles" ng-include="GetTemplate(Bicycle)">
+                        <div class="callout bicycle" ng-repeat="Bicycle in Basket.BicycleQuotes[0].Bicycles"> <!-- ng-include="GetTemplate(Bicycle)">-->
                             <script type="text/ng-template" id="display">
                                 <div class="row">
                                     <div class="large-8 small-12 columns">
