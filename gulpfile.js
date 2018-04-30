@@ -6,7 +6,7 @@ gulp.task('webserver', function() {
     gulp.src('./')
         .pipe(webserver({
             fallback: 'index.html',
-            port: 82,
+            port: 3000,
             livereload: false,
             directoryListing: false,
             open: true
