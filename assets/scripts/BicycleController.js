@@ -4,7 +4,8 @@ module.controller('BicycleController', ['$scope', '$log', 'GenericServices', fun
 
     $scope.Basket = {};
     $scope.Basket.BicycleQuotes = [{
-        Bicycles: []
+        Bicycles: [],
+        TypeOfCover: 3
     }];
 
     // POPULATE LENGTH OF COVER DROPDOWN
@@ -148,43 +149,36 @@ module.controller('BicycleController', ['$scope', '$log', 'GenericServices', fun
 
     // COVER START DATE
     $scope.CoverStartDateOptions = GenericServices.GetCoverStartDates();
-
-    // DAY DROPDOWN
-    $scope.DayOptions = [];
-    for (var x = 1; x <= 31; x++) {
-        var value = String(x).replace(/\b(\d{1})\b/g, '0$1');
-        $scope.DayOptions.push({ id: x, name: value });
-    }
-
-    // MONTH DROPDOWN
-    $scope.MonthOptions = [
-        { id: 0, name: 'January' },
-        { id: 1, name: 'February' },
-        { id: 2, name: 'March' },
-        { id: 3, name: 'April' },
-        { id: 4, name: 'May' },
-        { id: 5, name: 'June' },
-        { id: 6, name: 'July' },
-        { id: 7, name: 'August' },
-        { id: 8, name: 'September' },
-        { id: 9, name: 'October' },
-        { id: 10, name: 'November' },
-        { id: 11, name: 'December' }
-    ];
-
+    // DOB DAY DROPDOWN
+    $scope.DayOptions = GenericServices.DayOptions();
+    // DOB MONTH DROPDOWN
+    $scope.MonthOptions = GenericServices.MonthOptions();
     // DOB YEAR DROPDOWN
-    $scope.DateOfBirthYearOptions = [];
-    // POPUALTE YEAR DROPDOWN
-    var today = new Date();
-    var currentYear = today.getFullYear();
-    // 2 YEARS FORWARD FROM CURRENT YEAR
-    var maxYear = new Date(today.setFullYear(today.getFullYear() + 1)).getFullYear();
-    // 17 YEARS BACK FROM CURRENT YEAR
-    var minYear = new Date(today.setFullYear(today.getFullYear() - 90)).getFullYear();
+    $scope.DateOfBirthYearOptions = GenericServices.RangedYearOptions(17, 90);
 
-    for (x = (currentYear - 17); x >= minYear; x--) {
-        $scope.DateOfBirthYearOptions.push({ id: x, name: x });
-    }
+    $scope.ChangeDateOfBirthDate = function() {
+        var day = $scope.Basket.BicycleQuotes[0].DateOfBirthDay;
+        var month = $scope.Basket.BicycleQuotes[0].DateOfBirthMonth;
+        var year = $scope.Basket.BicycleQuotes[0].DateOfBirthYear;
+
+        if ((angular.isDefined(day) && !isNaN(day)) && (angular.isDefined(month) && !isNaN(month)) && (angular.isDefined(year) && !isNaN(year))) {
+            $scope.Basket.BicycleQuotes[0].DateOfBirth = new Date(Date.UTC(year, month, day, 0, 0, 0, 0));
+            $scope.Basket.BicycleQuotes[0].ValidDateOfBirth = GenericServices.ValidDate(year, month, day);
+            $scope.ValidateDateOfBirth($scope.Basket.BicycleQuotes[0].DateOfBirth);
+        } else {
+            $scope.Basket.BicycleQuotes[0].DateOfBirth = null;
+            $scope.Basket.BicycleQuotes[0].ValidDateOfBirth = false;
+        }
+
+        if (
+            $scope.BicycleQuoteForm.$submitted && !$scope.Basket.BicycleQuotes[0].ValidDateOfBirth ||
+            (!$scope.Basket.BicycleQuotes[0].ValidDateOfBirth && ($scope.BicycleQuoteForm.DateOfBirthDay.$dirty || $scope.BicycleQuoteForm.DateOfBirthMonth.$dirty || $scope.BicycleQuoteForm.DateOfBirthYear.$dirty)) ||
+            ($scope.IsMinMaxDateOfBirthInvalid && ($scope.BicycleQuoteForm.DateOfBirthDay.$dirty || $scope.BicycleQuoteForm.DateOfBirthMonth.$dirty || $scope.BicycleQuoteForm.DateOfBirthYear.$dirty))) {
+            $scope.IsDateOfBirthInvalid = true;
+        } else {
+            $scope.IsDateOfBirthInvalid = false;
+        }
+    };
 
 
 }]);

@@ -15,15 +15,15 @@ module.factory('GenericServices', ['$http', '$filter', function ($http, $filter)
                 });
         },
         GetAge: function (birth) {
-            var nowyear = today.getFullYear();
-            var nowmonth = today.getMonth();
-            var nowday = today.getDate();
-            var birthyear = birth.getFullYear();
-            var birthmonth = birth.getMonth();
-            var birthday = birth.getDate();
-            var age = nowyear - birthyear;
-            var age_month = nowmonth - birthmonth;
-            var age_day = nowday - birthday;
+            var nowyear = today.getFullYear(),
+                nowmonth = today.getMonth(),
+                nowday = today.getDate(),
+                birthyear = birth.getFullYear(),
+                birthmonth = birth.getMonth(),
+                birthday = birth.getDate(),
+                age = nowyear - birthyear,
+                age_month = nowmonth - birthmonth,
+                age_day = nowday - birthday;
 
             if (age_month < 0 || (age_month === 0 && age_day < 0)) {
                 age = parseInt(age, 10) - 1;
@@ -32,16 +32,16 @@ module.factory('GenericServices', ['$http', '$filter', function ($http, $filter)
             return age;
         },
         GetAgeAtInception: function (birth, inceptionDate) {
-            var iDate = new Date(inceptionDate);
-            var year = iDate.getFullYear();
-            var month = iDate.getMonth();
-            var day = iDate.getDate();
-            var birthyear = birth.getFullYear();
-            var birthmonth = birth.getMonth();
-            var birthday = birth.getDate();
-            var age = year - birthyear;
-            var age_month = month - birthmonth;
-            var age_day = day - birthday;
+            var iDate = new Date(inceptionDate),
+                year = iDate.getFullYear(),
+                month = iDate.getMonth(),
+                day = iDate.getDate(),
+                birthyear = birth.getFullYear(),
+                birthmonth = birth.getMonth(),
+                birthday = birth.getDate(),
+                age = year - birthyear,
+                age_month = month - birthmonth,
+                age_day = day - birthday;
 
             if (age_month < 0 || (age_month === 0 && age_day < 0)) {
                 age = parseInt(age, 10) - 1;
@@ -169,9 +169,11 @@ module.factory('GenericServices', ['$http', '$filter', function ($http, $filter)
         },
         ValidDate: function (year, month, day) {
             var isLeapYear = false;
+
             year = parseInt(year, 10);
             month = parseInt(month, 10);
             day = parseInt(day, 10);
+
             // LEAP YEAR CALCULATOR
             if (typeof (year) !== 'undefined') {
                 if (year % 4 !== 0) {
@@ -258,56 +260,72 @@ module.factory('GenericServices', ['$http', '$filter', function ($http, $filter)
             }
             return options;
         },
-        FullMonthOptions: function () {
+        MonthOptions: function () {
             return [
-                { id: '0', name: 'January' },
-                { id: '1', name: 'February' },
-                { id: '2', name: 'March' },
-                { id: '3', name: 'April' },
-                { id: '4', name: 'May' },
-                { id: '5', name: 'June' },
-                { id: '6', name: 'July' },
-                { id: '7', name: 'August' },
-                { id: '8', name: 'September' },
-                { id: '9', name: 'October' },
-                { id: '10', name: 'November' },
-                { id: '11', name: 'December' }
+                { id: 0, name: 'January' },
+                { id: 1, name: 'February' },
+                { id: 2, name: 'March' },
+                { id: 3, name: 'April' },
+                { id: 4, name: 'May' },
+                { id: 5, name: 'June' },
+                { id: 6, name: 'July' },
+                { id: 7, name: 'August' },
+                { id: 8, name: 'September' },
+                { id: 9, name: 'October' },
+                { id: 10, name: 'November' },
+                { id: 11, name: 'December' }
             ];
         },
         PaymentMonthDropdown: function () {
             return [
-                { id: '01', name: 'January (01)' },
-                { id: '02', name: 'February (02)' },
-                { id: '03', name: 'March (03)' },
-                { id: '04', name: 'April (04)' },
-                { id: '05', name: 'May (05)' },
-                { id: '06', name: 'June (06)' },
-                { id: '07', name: 'July (07)' },
-                { id: '08', name: 'August (08)' },
-                { id: '09', name: 'September (09)' },
-                { id: '10', name: 'October (10)' },
-                { id: '11', name: 'November (11)' },
-                { id: '12', name: 'December (12)' }
+                { id: 01, name: 'January (01)' },
+                { id: 02, name: 'February (02)' },
+                { id: 03, name: 'March (03)' },
+                { id: 04, name: 'April (04)' },
+                { id: 05, name: 'May (05)' },
+                { id: 06, name: 'June (06)' },
+                { id: 07, name: 'July (07)' },
+                { id: 08, name: 'August (08)' },
+                { id: 09, name: 'September (09)' },
+                { id: 10, name: 'October (10)' },
+                { id: 11, name: 'November (11)' },
+                { id: 12, name: 'December (12)' }
             ];
         },
-        RestrictedYearOptions: function () {
-            var today = new Date();
-            var previousYear = today.getFullYear() - 1;
-            var currentYear = today.getFullYear();
-            var years = [];
-            for (x = previousYear; x <= currentYear; x++) {
-                years.push({ id: x, name: x });
-            }
-            return years;
-        },
         CustomYearOptions: function (numberOfYears) {
-            var today = new Date();
-            var currentYear = today.getFullYear();
-            var maxYear = new Date(today.setFullYear(today.getFullYear() + numberOfYears)).getFullYear();
-            var years = [];
+            var years = [],
+                today = new Date(),
+                currentYear = today.getFullYear(),
+                maxYear = new Date(today.setFullYear(currentYear + numberOfYears)).getFullYear();
+            
             for (x = currentYear; x <= maxYear; x++) {
                 years.push({ id: x, name: x });
             }
+
+            return years;
+        },
+        CustomReverseYearOptions: function (negativeYears) {
+            var years = [],
+                today = new Date(),
+                previousYear = today.getFullYear() - negativeYears,
+                currentYear = today.getFullYear();
+
+            for (x = previousYear; x <= currentYear; x++) {
+                years.push({ id: x, name: x });
+            }
+
+            return years;
+        },
+        RangedYearOptions: function(offSet, forwardCount) {
+            var years = [],
+                today = new Date(),
+                currentYear = today.getFullYear();
+                minYear = new Date(today.setFullYear(currentYear - forwardCount)).getFullYear();
+
+            for (x = (currentYear - offSet); x >= minYear; x--) {
+                years.push({ id: x, name: x });
+            }
+
             return years;
         },
         SaveBasket: function (data, callback) {
