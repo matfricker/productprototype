@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="assets/styles/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="assets/scripts/app.js"></script>
-    <script src="assets/scripts/genericservices.js"></script>    
+    <script src="assets/scripts/genericservices.js"></script>
     <script src="assets/scripts/maincontroller.js"></script>
     <script src="assets/scripts/bicyclecontroller.js"></script>
 </head>
@@ -20,7 +20,7 @@
     <div class="row" ng-hide="CanCrossSell && HideBicycleForm">
         <div class="small-12 medium-12 large-8 columns main-form">
             <div class="body-header">
-                <h2>Bicycle Insurance {{message}}</h2>
+                <h2>{{Title}} {{Message}}</h2>
             </div>
             <form name="BicycleQuoteForm" method="post" novalidate ng-submit="BicycleQuoteForm.$valid && ValidateForm(BicycleQuoteForm) && SendForm()">
                 <div class="row columns">
@@ -51,7 +51,8 @@
                     </div>
                     <p ng-show="Basket.BicycleQuotes[0].Bicycles.length > 0">You currently have <strong>{{Basket.BicycleQuotes[0].Bicycles.length}} {{BicycleText}}</strong>, with a combined value of <strong>£{{TotalBicycleValue}}</strong> on the current quote.</p>
                     <div class="callout bicycles">
-                        <div class="callout bicycle" ng-repeat="Bicycle in Basket.BicycleQuotes[0].Bicycles"> <!-- ng-include="GetTemplate(Bicycle)">-->
+                        <div class="callout bicycle" ng-repeat="Bicycle in Basket.BicycleQuotes[0].Bicycles" ng-include="GetTemplate(Bicycle)">
+                            <!-- ng-include="GetTemplate(Bicycle)">-->
                             <script type="text/ng-template" id="display">
                                 <div class="row">
                                     <div class="large-8 small-12 columns">
@@ -111,8 +112,8 @@
                                 </div>
                                 <div class="large-5 small-12 columns">
                                     <select name="BikeType" class="biketype" ng-model="Bicycle.Type" ng-options="option.id as option.value for option in BicycleTypeOptions" ng-change="ValidateBike()">
-                                        <option value="">Type of Bicycle</option>
-                                    </select>
+                                            <option value="">Type of Bicycle</option>
+                                        </select>
                                 </div>
                             </div>
                             <div class="callout primary fade" ng-show="info3">
@@ -186,8 +187,8 @@
                     </div>
                     <div class="callout change-tier warning" ng-show="ChangedToPerformance || ChangedToUltimate">
                         <button class="close-button" aria-label="Close alert" type="button" ng-click="CloseTierWarning()">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         <p>You have reached the limit for your selected Bicycle Insurance tier. In order to continue we’ve moved you up to our Ultimate tier. Essentials policies are unavailable for durations of less than a year, and our Performance and Essential
                             tier policies both contain lower limits on bike values than our Ultimate tier. For more information on the limits of each of our Bicycle Insurance tiers, please refer to our <a class="red-text" target="_blank" href="https://www.yellowjersey.co.uk/info-zone">comparison table</a>.</p>
                     </div>
@@ -226,8 +227,8 @@
                 </div>
                 <div class="row columns">
                     <select id="CoverStartDate" name="CoverStartDate" ng-model="Basket.BicycleQuotes[0].CoverStartDate" ng-change="ChangeCoverStartDate()" ng-options="option.Id as option.Name for option in CoverStartDateOptions" required>
-                        <option value="">Cover Start Date</option>
-                    </select>
+                            <option value="">Cover Start Date</option>
+                        </select>
                     <div ng-show="BicycleQuoteForm.$submitted && (BicycleQuoteForm.CoverStartDate.$untouched || BicycleQuoteForm.CoverStartDate.$modelValue == null)">
                         <div class="validation-helper" ng-show="BicycleQuoteForm.CoverStartDate.$invalid || BicycleQuoteForm.CoverStartDate.$modelValue == null || BicycleQuoteForm.CoverStartDate.$untouched">Cover start date is required.</div>
                     </div>
@@ -239,21 +240,21 @@
                             <div class="row">
                                 <div class="large-4 small-3 column">
                                     <select id="DateOfBirthDay" name="DateOfBirthDay" ng-model="Basket.BicycleQuotes[0].DateOfBirthDay" ng-change="ChangeDateOfBirthDate()" ng-disabled="!Basket.BicycleQuotes[0].CoverStartDate" integer>
-                                            <option value="" >Day</option>
-                                            <option ng:repeat="day in DayOptions" value="{{day.id}}" >{{day.name}}</option>
-                                        </select>
+                                                <option value="" >Day</option>
+                                                <option ng:repeat="day in DayOptions" value="{{day.id}}" >{{day.name}}</option>
+                                            </select>
                                 </div>
                                 <div class="large-4 small-5 column">
                                     <select id="DateOfBirthMonth" name="DateOfBirthMonth" ng-model="Basket.BicycleQuotes[0].DateOfBirthMonth" ng-change="ChangeDateOfBirthDate()" ng-disabled="!Basket.BicycleQuotes[0].CoverStartDate" integer>
-                                            <option value="" >Month</option>
-                                            <option ng:repeat="month in MonthOptions" value="{{month.id}}" >{{month.name}}</option>
-                                        </select>
+                                                <option value="" >Month</option>
+                                                <option ng:repeat="month in MonthOptions" value="{{month.id}}" >{{month.name}}</option>
+                                            </select>
                                 </div>
                                 <div class="large-4 small-4 column">
                                     <select id="DateOfBirthYear" name="DateOfBirthYear" ng-model="Basket.BicycleQuotes[0].DateOfBirthYear" ng-change="ChangeDateOfBirthDate()" ng-disabled="!Basket.BicycleQuotes[0].CoverStartDate" integer>
-                                            <option value="" >Year</option>
-                                            <option ng:repeat="year in DateOfBirthYearOptions" value="{{year.id}}" >{{year.name}}</option>
-                                        </select>
+                                                <option value="" >Year</option>
+                                                <option ng:repeat="year in DateOfBirthYearOptions" value="{{year.id}}" >{{year.name}}</option>
+                                            </select>
                                 </div>
                             </div>
                             <div class="validation-helper" ng-show="(BicycleQuoteForm.$submitted || (BicycleQuoteForm.DateOfBirthDay.$dirty && BicycleQuoteForm.DateOfBirthMonth.$dirty && BicycleQuoteForm.DateOfBirthYear.$dirty)) && (!Basket.BicycleQuotes[0].ValidDateOfBirth || IsMinMaxDateOfBirthInvalid)">
@@ -316,20 +317,6 @@
                         <button id="btnBicycleNewBusinessProceed" class="button black-arrow" ng-click="Proceed()" ng-disabled="Proccessing">Proceed</button>
                     </div>
                 </div>
-                <div class="row columns" ng-show="debugging">
-                    <p>&nbsp;</p>
-                    <div>
-                        <pre><strong>USER STATE</strong></pre>
-                        <pre>Has 365 Bicycle  : {{HasAnnualBicyclePolicy}}</pre>
-                        <pre>Has 365 Travel   : {{HasAnnualTravelPolicy}}</pre>
-                        <pre>Been Bicycle     : {{BeenToBicycle}}</pre>
-                        <pre>Been Travel      : {{BeenToTravel}}</pre>
-                        <pre>Edit Mode        : {{IsEdit}}</pre>
-                    </div>
-                    <br />
-                    <pre><strong>BASKET</strong></pre>
-                    <pre>{{Basket | json}}</pre>
-                </div>
             </form>
         </div>
         <div class="small-12 medium-12 large-4 columns sidebar">
@@ -346,7 +333,22 @@
             </div>
         </div>
     </div>
+    <div class="debugging-info" ng-show="debugging">
+        <!--
+            <strong>USER STATE</strong>
+            <pre>Has 365 Bicycle  : {{HasAnnualBicyclePolicy}}</pre>
+            <pre>Has 365 Travel   : {{HasAnnualTravelPolicy}}</pre>
+            <pre>Been Bicycle     : {{BeenToBicycle}}</pre>
+            <pre>Been Travel      : {{BeenToTravel}}</pre>
+            <pre>Edit Mode        : {{IsEdit}}</pre>
+            <br />
+            -->
+        Basket:
+        <pre>{{Basket | json}}</pre>
+    </div>
 </div>
+
+
 
 </body>
 
