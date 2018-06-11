@@ -195,8 +195,7 @@
                     <div class="row collapse">
                         <div class="columns large-4 medium-6 small-12 radio-button" ng-repeat="TypeOfCover in TypeOfCoverValueOptions">
                             <label id="label-typeofcover-{{TypeOfCover.Id}}" class="typeofcover" ng-class="{checked: Basket.BicycleQuotes[0].TypeOfCover == TypeOfCover.Id, 'read-only': ValidateTypeOfCover(TypeOfCover.Id)}" for="radio-typeofcover-{{TypeOfCover.Id}}">{{TypeOfCover.Name}}</label>
-                            <input type="radio" class="clear-radio-input" id="radio-typeofcover-{{TypeOfCover.Id}}" name="TypeOfCover" value="{{TypeOfCover.Value}}" ng-model="Basket.BicycleQuotes[0].TypeOfCover" ng-change="TypeOfCoverChange()" ng-disabled="ValidateTypeOfCover(TypeOfCover.Id)"
-                                integer />
+                            <input type="radio" class="clear-radio-input" id="radio-typeofcover-{{TypeOfCover.Id}}" name="TypeOfCover" value="{{TypeOfCover.Value}}" ng-model="Basket.BicycleQuotes[0].TypeOfCover" ng-change="TypeOfCoverChange()" ng-disabled="ValidateTypeOfCover(TypeOfCover.Id)" integer />
                             <!--required />-->
                         </div>
                     </div>
@@ -215,7 +214,7 @@
                     <div class="row collapse">
                         <div class="columns large-3 small-6 radio-button" ng-repeat="Claim in ClaimOptions">
                             <label id="label-claims-{{Claim.Id}}" class="claims" ng-class="{checked: Basket.BicycleQuotes[0].NumberOfClaimsInLastThreeYears == Claim.Id}" for="radio-claims-{{Claim.Id}}">{{Claim.Name}}</label>
-                            <input type="radio" class="clear-radio-input" id="radio-claims-{{Claim.Id}}" name="NumberOfClaimsInLastThreeYears" value="{{Claim.Value}}" ng-model="Basket.BicycleQuotes[0].NumberOfClaimsInLastThreeYears" ng-click="ValidateClaims()" required />
+                            <input type="radio" class="clear-radio-input" id="radio-claims-{{Claim.Id}}" name="NumberOfClaimsInLastThreeYears" value="{{Claim.Value}}" ng-model="Basket.BicycleQuotes[0].NumberOfClaimsInLastThreeYears" ng-click="ValidateClaims()" integer required />
                         </div>
                     </div>
                     <div ng-show="BicycleQuoteForm.$submitted || BicycleQuoteForm.Claims.$touched">
