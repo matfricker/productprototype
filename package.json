@@ -4,10 +4,10 @@
   "description": "Refactor product page",
   "main": "index.html",
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^4.0.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-webserver": "^0.9.1"
   },
   "scripts": {
