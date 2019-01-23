@@ -4,14 +4,11 @@
   "description": "Refactor product page",
   "main": "index.html",
   "dependencies": {
-    "gulp": "^4.0.0"
+    "http-server": "^0.11.1"
   },
-  "devDependencies": {
-    "gulp": "^4.0.0",
-    "gulp-webserver": "^0.9.1"
-  },
+  "devDependencies": {},
   "scripts": {
-    "start": "gulp default"
+    "start": "http-server -a localhost -p 8000 -c-1"
   },
   "author": "Matt Fricker",
   "license": "ISC",
