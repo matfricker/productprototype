@@ -3,10 +3,14 @@
 
     angular
         .module('app')
-        .controller('MainController', ['$scope', function($scope) {
+        .controller('Main', Main);
+        
+        Main.$inject = ['$scope'];
+        
+        function Main($scope) {
             $scope.debugging = true;
             $scope.Message = '[AngularJS]';
             console.log($scope.Message);
-        }]);
+        };
 
 })();

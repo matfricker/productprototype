@@ -8,20 +8,15 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-uglify": "^3.0.0",
     "gulp-webserver": "^0.9.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp default"
   },
   "author": "Matt Fricker",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matfricker/productprototype.git"
-  },
-  "bugs": {
-    "url": "https://github.com/matfricker/productprototype/issues"
-  },
-  "homepage": "https://github.com/matfricker/productprototype#readme"
+  }
 }

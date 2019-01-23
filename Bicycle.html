@@ -4,36 +4,28 @@
 <head>
     <link rel="stylesheet" href="assets/styles/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="assets/scripts/app.js"></script>
-    <script src="assets/scripts/genericservices.js"></script>
-    <script src="assets/scripts/maincontroller.js"></script>
-    <script src="assets/scripts/bicyclecontroller.js"></script>
+    <script src="app/App.js"></script>
+    <script src="app/services/GenericServices.js"></script>
+    <script src="app/services/BicycleServices.js"></script>
+    <script src="app/controllers/Main.js"></script>
+    <script src="app/controllers/Bicycle.js"></script>
 </head>
 
-<body ng-controller="MainController"></body>
+<body ng-controller="Main"></body>
 
-<div class="body-content" ng-cloak ng-controller="BicycleController">
-    <!--@Html.Partial("_MobileBasketPartial")-->
-    <div class="row columns" ng-show="CanCrossSell && HideBicycleForm">
-        <!--@Html.Partial("_BicycleCrossSellPartial")-->
-    </div>
-    <div class="row" ng-hide="CanCrossSell && HideBicycleForm">
+<div class="body-content" ng-cloak ng-controller="Bicycle">
+    <div class="row">
         <div class="small-12 medium-12 large-8 columns main-form">
             <div class="body-header">
                 <h2>{{Title}} {{Message}}</h2>
             </div>
             <form name="BicycleQuoteForm" method="post" novalidate ng-submit="BicycleQuoteForm.$valid && ValidateForm(BicycleQuoteForm) && SendForm()">
                 <div class="row columns">
-                    <label>How long do you need cover for <span class="badge custom" ng-click="info1=!info1">?</span></label>
-                    <div class="callout primary fade" ng-show="info1">
-                        <p>We are currently the only bicycle insurer to offer short term and annual policies. We understand that different riders have different needs, and we want to provide you with as much flexibility as possible.</p>
-                        <p>Short term policies offer all the same cover as our annual policies, but just for a single event or holiday. Annual policies cover your bicycles year-round for every ride.</p>
-                        <p>Short term policies are available on our Performance and Ultimate Bicycle Insurance tiers. Annual policies are available with all levels.</p>
-                    </div>
+                    <label>How long do you need cover for?</span></label>
                     <div class="row collapse">
                         <div class="columns large-4 medium-6 small-12 radio-button" ng-repeat="LengthOfCover in LengthOfCoverOptions">
-                            <label id="label-lengthofcover-{{LengthOfCover.Id}}" class="lengthofcover" ng-class="{checked: Basket.BicycleQuotes[0].LengthOfCover == LengthOfCover.Id}" for="radio-lengthofcover-{{LengthOfCover.Id}}">{{LengthOfCover.Name}}</label>
-                            <input type="radio" class="clear-radio-input" id="radio-lengthofcover-{{LengthOfCover.Id}}" name="LengthOfCover" value="{{LengthOfCover.Value}}" ng-model="Basket.BicycleQuotes[0].LengthOfCover" ng-change="LengthOfCoverChange()" integer required />
+                            <label id="label-lengthofcover-{{LengthOfCover.id}}" class="lengthofcover" ng-class="{checked: Basket.BicycleQuotes[0].LengthOfCover == LengthOfCover.Id}" for="radio-lengthofcover-{{LengthOfCover.id}}">{{LengthOfCover.value}}</label>
+                            <input type="radio" class="clear-radio-input" id="radio-lengthofcover-{{LengthOfCover.id}}" name="LengthOfCover" value="{{LengthOfCover.value}}" ng-model="Basket.BicycleQuotes[0].LengthOfCover" ng-change="LengthOfCoverChange()" integer required />
                         </div>
                     </div>
                     <div ng-show="BicycleQuoteForm.$submitted">
@@ -42,13 +34,11 @@
                 </div>
                 <div class="row columns">
 
+                    <div style="padding: 20px; border: solid 1px gray;">
+
                     <!--BICYLE SECTION START-->
 
-                    <label>Manage your bicycles <span class="badge custom" ng-click="info2=!info2">?</span></label>
-                    <div class="callout primary fade" ng-show="info2">
-                        <p>Tell us about all the beautiful bicycles you wish to cover, for you and your immediate family. We offer a very generous 60% multi bike discount.</p>
-                        <p>Bicycles must be owned by you, a member of your family who lives permanently with you, or a bike which you are legally responsible for such as a hire bike.</p>
-                    </div>
+                    <label>Manage your bicycles?</span></label>
                     <p ng-show="Basket.BicycleQuotes[0].Bicycles.length > 0">You currently have <strong>{{Basket.BicycleQuotes[0].Bicycles.length}} {{BicycleText}}</strong>, with a combined value of <strong>£{{TotalBicycleValue}}</strong> on the current quote.</p>
                     <div class="callout bicycles">
                         <div class="callout bicycle" ng-repeat="Bicycle in Basket.BicycleQuotes[0].Bicycles" ng-include="GetTemplate(Bicycle)">
@@ -104,7 +94,6 @@
                                     <div class="input-group">
                                         <span class="input-group-label">&pound;</span>
                                         <input type="number" name="BikeValue" class="bikevalue" placeholder="Value" ng-model="Bicycle.Value" ng-change="ValidateBike()" />
-                                        <span class="badge custom bike-value-help" ng-click="info3=!info3">?</span>
                                     </div>
                                     <div class="validation-helper top-validation" ng-show="BicycleQuoteForm.BikeValue.$error.number">Invalid number, please use numbers only.</div>
                                     <div class="validation-helper top-validation" ng-show="BicycleValueTooHigh(Bicycle.Value)">We cannot offer cover for any bicycle with a value of more than &pound;{{MaxBicycleValue}}.</div>
@@ -133,26 +122,20 @@
                         </div>
                     </div>
 
+                    </div>
+
                     <!--BICYLE SECTION END-->
 
                 </div>
                 <div class="row columns">
-                    <label>Enter the value of any accessories you wish to insure <span class="badge custom" ng-click="info4=!info4">?</span></label>
-                    <div class="callout primary fade" ng-show="info4">
-                        <p>Accessories such as bottle cages and bike computers can be added to your policy. The first £250 of accessories are included for free on all polices. Please note, stolen or damaged accessories and clothing can only be claimed for
-                            if the bicycle is stolen or damaged at the same time. However, we do cover theft of wetsuits and helmets from a transition zone under the Ultimate policy, and accidental damage to additional wheels on Performance and Ultimate
-                            Policies. Additional wheelsets, helmets and clothing need to be added to your policy separately to accessories.</p>
-                    </div>
+                    <label>Enter the value of any accessories you wish to insure?</span></label>
                     <div class="input-group">
                         <span class="input-group-label">&pound;</span>
                         <input name="AccessoriesValue" type="number" ng-model="Basket.BicycleQuotes[0].AccessoriesValue" ng-blur="AccessoriesValueBlur()" placeholder="250 as standard" />
                     </div>
                 </div>
                 <div class="row columns" ng-hide="Basket.BicycleQuotes[0].TypeOfCover == 1">
-                    <label>Enter the value of any additional wheelsets you wish to insure <span class="badge custom" ng-click="info5=!info5">?</span></label>
-                    <div class="callout primary fade" ng-show="info5">
-                        <p>If you have additional wheelsets you wish to insure, for example a second pair of wheels you keep for racing, please enter their value here. Your primary pair of wheels should form part of the total bike value.</p>
-                    </div>
+                    <label>Enter the value of any additional wheelsets you wish to insure?</span></label>
                     <div class="input-group">
                         <span class="input-group-label">&pound;</span>
                         <input name="WheelsetValue" type="number" ng-model="Basket.BicycleQuotes[0].WheelsetValue" ng-blur="WheelsetValueBlur()" />
@@ -164,14 +147,11 @@
                     </div>
                 </div>
                 <div class="row columns">
-                    <label>Value of helmets, clothing and wetsuits <span class="badge custom" ng-click="info6=!info6">?</span></label>
-                    <div class="callout primary fade" ng-show="info6">
-                        <p>If you are making a claim for your bicycle, you can claim for clothing damaged in the same incident up to the limit selected below. Over and above, helmets and wetsuits stolen from a transition zone can be claimed for independently.</p>
-                    </div>
+                    <label>Value of helmets, clothing and wetsuits?</span></label>
                     <div class="row collapse">
                         <div class="columns large-2 small-4 radio-button" ng-repeat="HelmetAndClothingValue in HelmetAndClothingValueOptions">
-                            <label id="label-helmetandclothingvalue-{{HelmetAndClothingValue.Id}}" class="helmetandclothing" ng-class="{checked: Basket.BicycleQuotes[0].HelmetAndClothingValue == HelmetAndClothingValue.Id}" for="radio-helmetandclothingvalue-{{HelmetAndClothingValue.Id}}">{{HelmetAndClothingValue.Name}}</label>
-                            <input type="radio" class="clear-radio-input" id="radio-helmetandclothingvalue-{{HelmetAndClothingValue.Id}}" name="HelmetAndClothingValue" value="{{HelmetAndClothingValue.Value}}" ng-model="Basket.BicycleQuotes[0].HelmetAndClothingValue" ng-change="HelmetAndClothingValueChange()"
+                            <label id="label-helmetandclothingvalue-{{HelmetAndClothingValue.id}}" class="helmetandclothing" ng-class="{checked: Basket.BicycleQuotes[0].HelmetAndClothingValue == HelmetAndClothingValue.id}" for="radio-helmetandclothingvalue-{{HelmetAndClothingValue.id}}">{{HelmetAndClothingValue.value}}</label>
+                            <input type="radio" class="clear-radio-input" id="radio-helmetandclothingvalue-{{HelmetAndClothingValue.id}}" name="HelmetAndClothingValue" value="{{HelmetAndClothingValue.value}}" ng-model="Basket.BicycleQuotes[0].HelmetAndClothingValue" ng-change="HelmetAndClothingValueChange()"
                                 integer required />
                         </div>
                     </div>
@@ -180,30 +160,13 @@
                     </div>
                 </div>
                 <div class="row columns">
-                    <label>Select your level of cover: <span class="badge custom" ng-click="info7=!info7">?</span></label>
-                    <div class="callout primary fade" ng-show="info7">
-                        <p>We offer three levels of insurance to suit your requirements, from the race ready 'Ultimate' to the sportive focused 'Performance' and the no frills 'Essential'. Depending on your bike details and how long you need cover for, some
-                            options may be unavailable.</p>
-                    </div>
-                    <div class="callout change-tier warning" ng-show="ChangedToPerformance || ChangedToUltimate">
-                        <button class="close-button" aria-label="Close alert" type="button" ng-click="CloseTierWarning()">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        <p>You have reached the limit for your selected Bicycle Insurance tier. In order to continue we’ve moved you up to our Ultimate tier. Essentials policies are unavailable for durations of less than a year, and our Performance and Essential
-                            tier policies both contain lower limits on bike values than our Ultimate tier. For more information on the limits of each of our Bicycle Insurance tiers, please refer to our <a class="red-text" target="_blank" href="https://www.yellowjersey.co.uk/info-zone">comparison table</a>.</p>
-                    </div>
+                    <label>Select your level of cover:</span></label>
                     <div class="row collapse">
                         <div class="columns large-4 medium-6 small-12 radio-button" ng-repeat="TypeOfCover in TypeOfCoverValueOptions">
-                            <label id="label-typeofcover-{{TypeOfCover.Id}}" class="typeofcover" ng-class="{checked: Basket.BicycleQuotes[0].TypeOfCover == TypeOfCover.Id, 'read-only': ValidateTypeOfCover(TypeOfCover.Id)}" for="radio-typeofcover-{{TypeOfCover.Id}}">{{TypeOfCover.Name}}</label>
-                            <input type="radio" class="clear-radio-input" id="radio-typeofcover-{{TypeOfCover.Id}}" name="TypeOfCover" value="{{TypeOfCover.Value}}" ng-model="Basket.BicycleQuotes[0].TypeOfCover" ng-change="TypeOfCoverChange()" ng-disabled="ValidateTypeOfCover(TypeOfCover.Id)" integer />
+                            <label id="label-typeofcover-{{TypeOfCover.id}}" class="typeofcover" ng-class="{checked: Basket.BicycleQuotes[0].TypeOfCover == TypeOfCover.id, 'read-only': ValidateTypeOfCover(TypeOfCover.id)}" for="radio-typeofcover-{{TypeOfCover.id}}">{{TypeOfCover.value}}</label>
+                            <input type="radio" class="clear-radio-input" id="radio-typeofcover-{{TypeOfCover.id}}" name="TypeOfCover" value="{{TypeOfCover.value}}" ng-model="Basket.BicycleQuotes[0].TypeOfCover" ng-change="TypeOfCoverChange()" ng-disabled="ValidateTypeOfCover(TypeOfCover.id)" integer />
                             <!--required />-->
                         </div>
-                    </div>
-                    <div class="anchor">
-                        <div class="essential-disabled"><strong>Essential</strong><br />Our Essential level bicycle insurance is available as an annual policy for bikes valued up to £1,000 each, and policies totalling £3,000 including accessories. If you need to cover more expensive
-                            bikes, or you are looking for a short-term policy, please have a look at our Performance and Ultimate Bicycle Insurance tiers.</div>
-                        <div class="performance-disabled"><strong>Performance</strong><br />Our 'Performance' level bicycle insurance is available for bikes up to £3,000 each, and you can add up to £10,000 onto the policy including bikes, accessories, wheels and clothing. If you need
-                            to cover more expensive bikes, please have a look at our Ultimate Bicycle Insurance tier.</div>
                     </div>
                     <div ng-show="BicycleQuoteForm.$submitted">
                         <div class="validation-helper" ng-show='Basket.BicycleQuotes[0].TypeOfCover < 1'>You need to provide the level of cover to proceed.</div>
@@ -213,8 +176,8 @@
                     <label>How many bicycle claims in the last 3 years</label>
                     <div class="row collapse">
                         <div class="columns large-3 small-6 radio-button" ng-repeat="Claim in ClaimOptions">
-                            <label id="label-claims-{{Claim.Id}}" class="claims" ng-class="{checked: Basket.BicycleQuotes[0].NumberOfClaimsInLastThreeYears == Claim.Id}" for="radio-claims-{{Claim.Id}}">{{Claim.Name}}</label>
-                            <input type="radio" class="clear-radio-input" id="radio-claims-{{Claim.Id}}" name="NumberOfClaimsInLastThreeYears" value="{{Claim.Value}}" ng-model="Basket.BicycleQuotes[0].NumberOfClaimsInLastThreeYears" ng-click="ValidateClaims()" integer required />
+                            <label id="label-claims-{{Claim.id}}" class="claims" ng-class="{checked: Basket.BicycleQuotes[0].NumberOfClaimsInLastThreeYears == Claim.id}" for="radio-claims-{{Claim.id}}">{{Claim.value}}</label>
+                            <input type="radio" class="clear-radio-input" id="radio-claims-{{Claim.id}}" name="NumberOfClaimsInLastThreeYears" value="{{Claim.value}}" ng-model="Basket.BicycleQuotes[0].NumberOfClaimsInLastThreeYears" ng-click="ValidateClaims()" integer required />
                         </div>
                     </div>
                     <div ng-show="BicycleQuoteForm.$submitted || BicycleQuoteForm.Claims.$touched">
@@ -318,30 +281,9 @@
                 </div>
             </form>
         </div>
-        <div class="small-12 medium-12 large-4 columns sidebar">
-            <!--@Html.Partial("_BasketPartial")-->
-            <div class="row columns">
-                <div class="advert">
-                    <!--@Html.Partial("_RightAdvertPartial")-->
-                </div>
-            </div>
-            <div class="row columns">
-                <div class="benefits">
-                    <!--@Html.Partial("_BicycleBenefitsPartial")-->
-                </div>
-            </div>
-        </div>
+        
     </div>
     <div class="debugging-info" ng-show="debugging">
-        <!--
-            <strong>USER STATE</strong>
-            <pre>Has 365 Bicycle  : {{HasAnnualBicyclePolicy}}</pre>
-            <pre>Has 365 Travel   : {{HasAnnualTravelPolicy}}</pre>
-            <pre>Been Bicycle     : {{BeenToBicycle}}</pre>
-            <pre>Been Travel      : {{BeenToTravel}}</pre>
-            <pre>Edit Mode        : {{IsEdit}}</pre>
-            <br />
-            -->
         Basket:
         <pre>{{Basket | json}}</pre>
     </div>
