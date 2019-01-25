@@ -9,8 +9,6 @@
     
     function Bicycle ($scope, $log, GenericServices, BicycleServices) {
 
-        $scope.Title = "Product";
-
         $scope.Basket = {};
         $scope.Basket.BicycleQuotes = [{
             Bicycles: []
@@ -18,31 +16,39 @@
 
         $scope.LengthOfCoverOptions = BicycleServices.GetLengthOfCoverOptions();
         $scope.BicycleTypeOptions = BicycleServices.GetBicycleTypeOptions();
+        $scope.HelmetAndClothingValueOptions = BicycleServices.GetHelmetAndClothingValueOptions();
+        $scope.TypeOfCoverValueOptions = BicycleServices.GetTypeOfCoverOptions();
+        $scope.ClaimOptions = BicycleServices.GetClaimsOptions();
+        $scope.CoverStartDateOptions = GenericServices.GetCoverStartDates(30);
+        $scope.DayOptions = GenericServices.GetDayOptions()
+        $scope.MonthOptions = GenericServices.GetFullMonthOptions();
+        $scope.DateOfBirthYearOptions = GenericServices.GetBirthdayYearOptions(18, 75);
 
+        $scope.BicycleText = "bicycle";
+        $scope.TotalBicycleValue = 0;
         $scope.ShowAddBicycle = true;
-        // ADD BICYCLE INTO GRID
-        $scope.AddBicycle = function() {
-            $scope.Basket.BicycleQuotes[0].Bicycles.push({
-                TempId: Date.now(),
-                MakeModel: $scope.Bicycle.MakeModel,
-                Value: $scope.Bicycle.Value,
-                Type: $scope.Bicycle.Type,
-                TypeName: GenericServices.GetBicycleType($scope.Bicycle.Type)
-            });
 
-            $log.debug('Bicycle Added');
+        // ADD BICYCLE
+        $scope.AddBicycle = function() {
+            $scope.Basket.BicycleQuotes[0].Bicycles
+                .push({
+                    TempId: Date.now(),
+                    MakeModel: $scope.Bicycle.MakeModel,
+                    Value: $scope.Bicycle.Value,
+                    Type: $scope.Bicycle.Type,
+                    TypeName: GenericServices.GetBicycleType($scope.Bicycle.Type)
+                });
+
+            $scope.TotalBicycleValue += parseInt($scope.Bicycle.Value, 10);
 
             // CLEAR FORM VALUES
             $scope.Bicycle = {};
         };
 
-        $scope.HelmetAndClothingValueOptions = BicycleServices.GetHelmetAndClothingValueOptions();
-        $scope.TypeOfCoverValueOptions = BicycleServices.GetTypeOfCoverOptions();
-        $scope.ClaimOptions = BicycleServices.GetClaimsOptions();
-        $scope.CoverStartDateOptions = GenericServices.GetCoverStartDates();
-        $scope.DayOptions = GenericServices.GetDayOptions()
-        $scope.MonthOptions = GenericServices.GetFullMonthOptions();
-        $scope.DateOfBirthYearOptions = GenericServices.GetBirthdayYearOptions();
+        // REMOVE BICYCLE
+        $scope.RemoveBicycle = function (index) {
+            $scope.Basket.BicycleQuotes[0].Bicycles.splice(index, 1);
+        }
 
     };
 

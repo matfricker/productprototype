@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="app" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="assets/styles/main.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+        <script src="app/App.js"></script>
+        <script src="app/controllers/Main.js"></script>
+    </head>
 
-<head>
-    <link rel="stylesheet" href="assets/styles/main.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
-    <script src="app/App.js"></script>
-    <script src="app/controllers/Main.js"></script>
-</head>
-
-<body ng-controller="Main">
-    <h1>{{message}}</h1>
-    <p>Welcome to the products.</p>
-    <p>
-        <a href="Bicycle.html">Bicycle Insurance</a>
-    </p>
-</body>
-
+    <body ng-controller="Main">
+        <div class="container">
+            <h1>{{message}}</h1>
+            <p>Welcome to the products.</p>
+            <p><a href="Bicycle.html">Bicycle Insurance</a></p>
+        </div>
+    </body>
 </html>

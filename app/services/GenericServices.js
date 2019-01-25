@@ -33,7 +33,6 @@
                 Get24HourOptions: get24HourOptions,
                 GetDayOptions: getDayOptions,
                 GetFullMonthOptions: getFullMonthOptions,
-                GetPaymentMonthOptions: getPaymentMonthOptions,
                 GetRestrictedYearOptions: getRestrictedYearOptions,
                 GetCustomYearOptions: getCustomYearOptions,
                 GetBirthdayYearOptions: getBirthdayYearOptions,
@@ -408,7 +407,7 @@
                 for (var i = 0; i <= 23; i++) {
                     var value = i,
                         name = padLeft(i, 2).toString() + ':00',
-                        option = { Id: value, Name: name };
+                        option = { id: value, name: name };
     
                     options.push(option);
                 }
@@ -421,7 +420,7 @@
     
                 for (var x = 1; x <= 31; x++) {
                     var value = String(x).replace(/\b(\d{1})\b/g, '0$1');
-                    options.push({ Id: x, Name: value });
+                    options.push({ id: x, name: value });
                 }
     
                 return options;
@@ -429,35 +428,18 @@
     
             function getFullMonthOptions() {
                 return [
-                    { Id: '0', Name: 'January' },
-                    { Id: '1', Name: 'February' },
-                    { Id: '2', Name: 'March' },
-                    { Id: '3', Name: 'April' },
-                    { Id: '4', Name: 'May' },
-                    { Id: '5', Name: 'June' },
-                    { Id: '6', Name: 'July' },
-                    { Id: '7', Name: 'August' },
-                    { Id: '8', Name: 'September' },
-                    { Id: '9', Name: 'October' },
-                    { Id: '10', Name: 'November' },
-                    { Id: '11', Name: 'December' }
-                ];
-            }
-    
-            function getPaymentMonthOptions() {
-                return [
-                    { Id: '01', Name: 'January (01)' },
-                    { Id: '02', Name: 'February (02)' },
-                    { Id: '03', Name: 'March (03)' },
-                    { Id: '04', Name: 'April (04)' },
-                    { Id: '05', Name: 'May (05)' },
-                    { Id: '06', Name: 'June (06)' },
-                    { Id: '07', Name: 'July (07)' },
-                    { Id: '08', Name: 'August (08)' },
-                    { Id: '09', Name: 'September (09)' },
-                    { Id: '10', Name: 'October (10)' },
-                    { Id: '11', Name: 'November (11)' },
-                    { Id: '12', Name: 'December (12)' }
+                    { id: '0', name: 'January' },
+                    { id: '1', name: 'February' },
+                    { id: '2', name: 'March' },
+                    { id: '3', name: 'April' },
+                    { id: '4', name: 'May' },
+                    { id: '5', name: 'June' },
+                    { id: '6', name: 'July' },
+                    { id: '7', name: 'August' },
+                    { id: '8', name: 'September' },
+                    { id: '9', name: 'October' },
+                    { id: '10', name: 'November' },
+                    { id: '11', name: 'December' }
                 ];
             }
     
@@ -468,7 +450,7 @@
                     years = [];
     
                 for (var x = previousYear; x <= currentYear; x++) {
-                    years.push({ Id: x, Name: x });
+                    years.push({ id: x, name: x });
                 }
     
                 return years;
@@ -494,7 +476,7 @@
                     years = [];
     
                 for (var x = (currentYear - minAge); x >= minYear; x--) {
-                    years.push({ Id: x, Name: x });
+                    years.push({ id: x, name: x });
                 }
     
                 return years;

@@ -9,8 +9,6 @@
         
         function Main($scope) {
             $scope.debugging = true;
-            $scope.Message = '[AngularJS]';
-            console.log($scope.Message);
         };
 
 })();
