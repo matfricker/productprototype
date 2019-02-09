@@ -3,11 +3,11 @@
 
     angular
         .module('app.services')
-        .factory('Generic', Generic);
+        .factory('Common', Common);
         
-        Generic.$inject = ['$http', '$filter'];
+        Common.$inject = ['$http', '$filter'];
         
-        function Generic($http, $filter) {
+        function Common($http, $filter) {
             
             return {
                 GetBasket: getBasket,
