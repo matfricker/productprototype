@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.services')
+        .module('app')
         .factory('Users', function () {
             var Users = {};
             var userList = [

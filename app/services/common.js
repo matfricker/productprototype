@@ -2,14 +2,13 @@
     'use strict';
 
     angular
-        .module('app.services')
+        .module('app')
         .factory('Common', Common);
         
         Common.$inject = ['$http', '$filter'];
         
         function Common($http, $filter) {
-            
-            return {
+            var factory = {
                 GetBasket: getBasket,
                 SaveBasket: saveBasket,
                 UpdateBasket: updateBasket,
@@ -39,6 +38,8 @@
                 TruncateString: truncateString,
                 RemoveWhiteSpace: removeWhiteSpace
             };
+
+            return factory;
     
             function getBasket() {
                 return $http.get('/basket/getbasket/')

@@ -2,20 +2,21 @@
     'use strict';
 
     angular
-        .module('app.services')
+        .module('app')
         .factory('BicycleServices', BicycleServices);
 
     BicycleServices.$inject = [];
 
     function BicycleServices() {
-
-        return {
+        var factory = {
             GetLengthOfCoverOptions: getLengthOfCoverOptions,
             GetBicycleTypeOptions: getBicycleTypeOptions,
             GetHelmetAndClothingValueOptions: getHelmetAndClothingValueOptions,
             GetTypeOfCoverOptions: getTypeOfCoverOptions,
             GetClaimsOptions: getClaimsOptions
         };
+
+        return factory;
     }
 
     function getLengthOfCoverOptions() {
