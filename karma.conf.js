@@ -15,7 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './app/services/bicycle.services.spec.js'
+      './node_modules/angular/angular.js',                              // angular
+      './node_modules/angular-mocks/angular-mocks.js',                  // loads our modules for tests
+      './app/modules.js',                                               // our angular app
+      './app/services/*.js'                                             // our services directory
     ],
 
 

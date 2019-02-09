@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.services')
         .factory('Generic', Generic);
         
         Generic.$inject = ['$http', '$filter'];
