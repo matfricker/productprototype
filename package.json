@@ -18,7 +18,7 @@
     "karma-phantomjs-launcher": "^1.0.4"
   },
   "scripts": {
-    "start": "http-server -a localhost -p 8000 -o -c-1",
+    "start": "http-server -a local.prototype.co.uk -p 8000 -o -c-1",
     "test": "karma start"
   },
   "author": "Matt Fricker",

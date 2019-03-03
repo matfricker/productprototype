@@ -74,14 +74,12 @@
             }
     
             function updateBasket(data) {
-                var url;
-    
                 if (data.IsAdjustment) {
-                    url = '/basket/updateadjustmentbasket';   // ADJUSTMENT WORKFLOW
+                    var url = '/basket/updateadjustmentbasket';   // ADJUSTMENT WORKFLOW
                 } else if (data.IsRenewal) {
-                    url = '/basket/updaterenewalbasket';      // RENEWAL WORKFLOW
+                    var url = '/basket/updaterenewalbasket';      // RENEWAL WORKFLOW
                 } else {
-                    url = '/basket/updatebasket';             // NB WORKFLOW
+                    var url = '/basket/updatebasket';             // NB WORKFLOW
                 }
     
                 return $http.post(url, data)

@@ -5,13 +5,23 @@
         .module('app')
         .controller('Bicycle', Bicycle);
         
-    Bicycle.$inject = ['$scope', '$log', 'Common', 'BicycleServices'];
+    Bicycle.$inject = ['$scope', '$log', 'Common', 'BicycleServices', 'YJWebService'];
     
-    function Bicycle ($scope, $log, Common, BicycleServices) {
+    function Bicycle ($scope, $log, Common, BicycleServices, YJWebService) {
 
         $scope.Basket = {
             BicycleQuotes: [{}]
         };
+
+        $scope.WebServiceMessage = YJWebService.HelloWorld();
+        
+        /*
+        YJWebService.HelloWorld()
+            .then(function (response) {
+                $log.info('RESPONSE:', response);
+                $scope.WebServiceMessage = response;
+            });
+        */
 
         $scope.LengthOfCoverOptions = BicycleServices.GetLengthOfCoverOptions();
         $scope.BicycleTypeOptions = BicycleServices.GetBicycleTypeOptions();

@@ -8,6 +8,7 @@
         Main.$inject = ['$scope'];
         
         function Main($scope) {
+            $scope.Message = 'Home sweet home..';
             $scope.debugging = true;
         };
 
