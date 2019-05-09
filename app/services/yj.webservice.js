@@ -9,12 +9,12 @@
 
         function YJWebService($soap) {
 
-            var base_url = "http://wcf.prototype.co.uk/webservice.svc";
+            var base_url = "https://frikz-wcf.azurewebsites.net/webservice.svc";
 
             return {
                 HelloWorld: function() {
-                    return "Hi";
-                    //return $soap.post(base_url, "HelloWorld");
+                    //return "Hi";
+                    return $soap.post(base_url, "HelloWorld");
                 }
             }
         }

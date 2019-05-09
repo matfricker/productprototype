@@ -10,7 +10,7 @@
             BicycleServices = _BicycleServices_;
         }));
 
-        it('should exsits', function() {
+        it('should exsit', function() {
             expect(BicycleServices).toBeDefined();
         })
     });
