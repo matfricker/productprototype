@@ -6,23 +6,16 @@
         <link rel="stylesheet" href="assets/styles/main.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="/node_modules/angular/angular.js"></script>
-        <script src="assets/scripts/soapclient.js"></script>
-        <script src="assets/scripts/angular.soap.js"></script>
         <script src="app/modules.js"></script>
         <script src="app/controllers/main.js"></script>
         <script src="app/controllers/bicycle.js"></script>
         <script src="app/services/common.js"></script>
         <script src="app/services/bicycle.js"></script>
-        <script src="app/services/yj.webservice.js"></script>
-        
     </head>
 
     <body ng-controller="Main">
         <div class="container py-2 px-5" ng-cloak ng-controller="Bicycle">
             <form name="BicycleQuoteForm" method="post" novalidate ng-submit="BicycleQuoteForm.$valid && ValidateForm(BicycleQuoteForm) && SendForm()">
-                
-                <p>YJWebService Message: {{WebServiceMessage}}</p>
-
                 <div class="card p-2 my-1">
                     <label>How long do you need cover for:</label>
                     <div>
