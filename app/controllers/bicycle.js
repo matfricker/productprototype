@@ -13,7 +13,7 @@
             BicycleQuotes: [{}]
         };
 
-        $scope.WebServiceMessage = YJWebService.HelloWorld();
+        //$scope.WebServiceMessage = YJWebService.HelloWorld();
         
         /*
         YJWebService.HelloWorld()
