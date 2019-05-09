@@ -4,21 +4,21 @@
   "description": "Refactor product page",
   "main": "index.html",
   "dependencies": {
-    "http-server": "^0.11.1"
+    "node-static": "^0.7.11"
   },
   "devDependencies": {
     "angular": "^1.7.7",
     "angular-mocks": "^1.7.7",
     "angular-ui-router": "^1.0.20",
     "jasmine-core": "^3.3.0",
-    "karma": "^4.0.0",
+    "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "^2.0.1",
     "karma-phantomjs-launcher": "^1.0.4"
   },
   "scripts": {
-    "start": "http-server -a local.prototype.co.uk -p 8000 -o -c-1",
+    "start": "node server.js",
     "test": "karma start"
   },
   "author": "Matt Fricker",
