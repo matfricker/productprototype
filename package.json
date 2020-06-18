@@ -4,7 +4,7 @@
   "description": "Refactor product page",
   "main": "index.html",
   "dependencies": {
-    "angular": "^1.7.9",
+    "angular": "^1.8.0",
     "angular-mocks": "^1.7.7",
     "angular-ui-router": "^1.0.20",
     "jasmine-core": "^3.3.0",
