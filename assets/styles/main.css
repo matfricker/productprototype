@@ -1,13 +1,30 @@
-.debugging-info {
+body {
+    margin: 0;
+}
+
+.container {
+    width: 375px;
+    margin: 10px auto;
+    border: solid 1px red;
+}
+
+.content {
+    padding: 10px;
+}
+
+.debugging-container {
     height: auto;
     width: 100%;
     color: #FFFFFF;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
 }
 
-.debugging-info pre {
+.debugging-content {
+    padding: 10px;
+}
+
+.debugging-content pre {
     font-size: 12px;
     color: #FFFFFF;
 }

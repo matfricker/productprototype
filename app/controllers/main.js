@@ -4,12 +4,16 @@
     angular
         .module('app')
         .controller('Main', Main);
-        
-        Main.$inject = ['$scope'];
-        
-        function Main($scope) {
-            $scope.Message = 'Home sweet home..';
-            $scope.debugging = true;
-        };
+
+    Main.$inject = ['$scope'];
+
+    function Main($scope) {
+        console.log('Hello from main / parent controller...');
+
+        $scope.message = 'Home sweet home...';
+
+        console.log($scope.message);
+        $scope.debugging = true;
+    };
 
 })();

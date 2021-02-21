@@ -58,6 +58,12 @@
             if ($scope.DateOfBirthDay && $scope.DateOfBirthMonth && $scope.DateOfBirthYear) {
                 $scope.Basket.BicycleQuotes[0].DateOfBirth = new Date(Date.UTC($scope.DateOfBirthYear, $scope.DateOfBirthMonth, $scope.DateOfBirthDay));
                 $scope.Basket.BicycleQuotes[0].DateOfBirth.toUTCString();
+
+                $scope.DateOfBirth1 = new Date($scope.DateOfBirthYear, $scope.DateOfBirthMonth, $scope.DateOfBirthDay);
+                $scope.DateOfBirth1.toUTCString();
+
+                $scope.DateOfBirth2 = new Date($scope.DateOfBirthYear, $scope.DateOfBirthMonth, $scope.DateOfBirthDay);
+                $scope.DateOfBirth2.toISOString();
             }
         }
 

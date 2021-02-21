@@ -6,8 +6,8 @@
         .factory('Users', function () {
             var Users = {};
             var userList = [
-                { id: '1', userName: 'matfricker', name: 'Matt', lastName: 'Fricker' },
-                { id: '2', userName: 'vanessal', name: 'Vanessa', lastName: 'Fricker' }
+                { id: '1', firstname: 'Matt', lastName: 'Fricker' },
+                { id: '2', firstname: 'Vanessa', lastName: 'Fricker' }
             ];
 
             Users.all = function() {

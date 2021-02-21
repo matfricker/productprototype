@@ -4,8 +4,8 @@
     describe('Users factory', function() {
         var Users;
         var userList = [
-            { id: '1', userName: 'matfricker', name: 'Matt', lastName: 'Fricker' },
-            { id: '2', userName: 'vanessal', name: 'Vanessa', lastName: 'Fricker' }
+            { id: '1', firstname: 'Matt', lastName: 'Fricker' },
+            { id: '2', firstname: 'Vanessa', lastName: 'Fricker' }
         ];
 
         // before each test load 'app' module
@@ -28,7 +28,7 @@
             })
 
             it('should return a list of users', function() {
-                console.log('List of Users: ', Users.all());
+                console.log(angular.mock.dump(Users.all()));
                 expect(Users.all()).toEqual(userList);
             })
 
