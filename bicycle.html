@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="assets/styles/main.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="/node_modules/angular/angular.js"></script>
         <script src="app/modules.js"></script>
         <script src="app/controllers/main.js"></script>
@@ -14,179 +13,144 @@
     </head>
 
     <body ng-controller="Main">
-        <div class="container py-2 px-5" ng-cloak ng-controller="Bicycle">
-            <form name="BicycleQuoteForm" method="post" novalidate ng-submit="BicycleQuoteForm.$valid && ValidateForm(BicycleQuoteForm) && SendForm()">
-                <div class="card p-2 my-1">
-                    <label>How long do you need cover for:</label>
-                    <div>
-                        <div class="form-check form-check-inline" ng-repeat="LengthOfCover in LengthOfCoverOptions">
-                            <input class="form-check-input" type="radio" id="radio-lengthofcover-{{LengthOfCover.id}}" value="{{LengthOfCover.id}}" ng-model="Basket.BicycleQuotes[0].LengthOfCover" />
-                            <label class="form-check-label" for="radio-lengthofcover-{{LengthOfCover.id}}">{{LengthOfCover.value}}</label>
+        <div class="container" ng-cloak ng-controller="Bicycle">
+            <div class="content">
+                <form name="BicycleQuoteForm" method="post" novalidate ng-submit="BicycleQuoteForm.$valid && ValidateForm(BicycleQuoteForm) && SendForm()">
+                    <div class="">
+                        <label>How long do you need cover for:</label>
+                        <div class="" ng-repeat="LengthOfCover in LengthOfCoverOptions">
+                            <input class="" type="radio" id="radio-lengthofcover-{{LengthOfCover.id}}" value="{{LengthOfCover.id}}" ng-model="Basket.BicycleQuotes[0].LengthOfCover" />
+                            <label class="" for="radio-lengthofcover-{{LengthOfCover.id}}">{{LengthOfCover.value}}</label>
                         </div>
                     </div>
-                </div>
-                    
-                <div class="card p-2 my-1">
-                    <!--BICYLE SECTION START-->
-                    <label>Bicycles:</label>
-                    <p ng-show="Basket.BicycleQuotes[0].Bicycles.length > 0">You currently have <strong>{{Basket.BicycleQuotes[0].Bicycles.length}} {{BicycleText}}</strong>, with a combined value of <strong>£{{TotalBicycleValue}}</strong> on the current quote.</p>
-                    
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" ng-repeat="Bicycle in Basket.BicycleQuotes[0].Bicycles">
-                            <strong>{{Bicycle.MakeModel | uppercase}}</strong><br/>
-                            <small>{{Bicycle.TypeName}}</small><br/>
-                            <small>&pound;{{Bicycle.Value}}</small></br>
-                            <a class="remove-link" ng-show="Basket.BicycleQuotes[0].Bicycles.length > 1" ng-click="RemoveBicycle($index)">remove</a>
-                        </li>
-                    </ul>
-                    
-                    <div class="m-2" ng-show="ShowAddBicycle">
-                        <div class="form-row align-items-center">
-                            <div class="col-auto">
-                                <input type="text" class="form-control mb-2" ng-model="Bicycle.MakeModel" placeholder="Make & Model" />
+                        
+                    <div class="">
+                        <!--BICYLE SECTION START-->
+                        <label>Bicycles:</label>
+                        <p ng-show="Basket.BicycleQuotes[0].Bicycles.length > 0">You currently have <strong>{{Basket.BicycleQuotes[0].Bicycles.length}} {{BicycleText}}</strong>, with a combined value of <strong>£{{TotalBicycleValue}}</strong> on the current quote.</p>
+                        
+                        <ul class="">
+                            <li class="" ng-repeat="Bicycle in Basket.BicycleQuotes[0].Bicycles">
+                                <strong>{{Bicycle.MakeModel | uppercase}}</strong><br/>
+                                <small>{{Bicycle.TypeName}}</small><br/>
+                                <small>&pound;{{Bicycle.Value}}</small></br>
+                                <a class="remove-link" ng-show="Basket.BicycleQuotes[0].Bicycles.length > 1" ng-click="RemoveBicycle($index)">remove</a>
+                            </li>
+                        </ul>
+                        
+                        <div class="" ng-show="ShowAddBicycle">
+                            <input class="" type="text" ng-model="Bicycle.MakeModel" placeholder="Model" />
+                            <input class="" type="text" placeholder="Value" ng-model="Bicycle.Value">
+                            <select class="" ng-model="Bicycle.Type" ng-options="option.id as option.value for option in BicycleTypeOptions">
+                                <option value="">Type of Bicycle</option>
+                            </select>
+                            <button class="" type="button" ng-click="AddBicycle()" ng-disabled="IsAddToQuoteDisabled">Add to Quote</button>
+                        </div>
+                        <!--BICYLE SECTION END-->
+                    </div>                   
+
+                    <div class="">
+                        <label>Enter the value of any accessories you wish to insure:</label>
+                        <input class="" type="text" ng-model="Basket.BicycleQuotes[0].AccessoriesValue" ng-blur="AccessoriesValueBlur()" placeholder="250 as standard" />
+                    </div>
+
+                    <div class="">
+                        <label>Enter the value of any additional wheelsets you wish to insure:</label>
+                        <input class="" type="text" ng-model="Basket.BicycleQuotes[0].WheelsetValue" ng-blur="WheelsetValueBlur()" />
+                    </div>
+
+                    <div class="">
+                        <label>Value of helmets, clothing and wetsuits:</label>
+                        <div class="" ng-repeat="HelmetAndClothingValue in HelmetAndClothingValueOptions">
+                            <input class="" type="radio" id="radio-helmetandclothingvalue-{{HelmetAndClothingValue.id}}" value="{{HelmetAndClothingValue.value}}" ng-model="Basket.BicycleQuotes[0].HelmetAndClothingValue" />
+                            <label class="" for="radio-helmetandclothingvalue-{{HelmetAndClothingValue.id}}">{{HelmetAndClothingValue.value}}</label>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <label>Select your level of cover:</label>
+                        <div>
+                            <div class="" ng-repeat="TypeOfCover in TypeOfCoverValueOptions">
+                                <input class="" type="radio" id="radio-typeofcover-{{TypeOfCover.id}}" value="{{TypeOfCover.id}}" ng-model="Basket.BicycleQuotes[0].TypeOfCover" />
+                                <label class="" for="radio-typeofcover-{{TypeOfCover.id}}">{{TypeOfCover.value}}</label>
                             </div>
-                            <div class="col-auto">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">&pound;</div>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Value" ng-model="Bicycle.Value">
-                                </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <label>How many bicycle claims in the last 3 years:</label>
+                        <div>
+                            <div class="" ng-repeat="Claim in ClaimOptions">
+                                <input class="" type="radio" id="radio-claims-{{Claim.id}}" value="{{Claim.id}}" ng-model="Basket.BicycleQuotes[0].NumberOfClaimsInLastThreeYears" />
+                                <label class="" for="radio-claims-{{Claim.id}}">{{Claim.value}}</label>
                             </div>
-                            <div class="col-auto">
-                                <select class="form-control mb-2" ng-model="Bicycle.Type" ng-options="option.id as option.value for option in BicycleTypeOptions">
-                                    <option value="">Type of Bicycle</option>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <label>Select Cover Start Date:</label>
+                        <select class="" ng-model="Basket.BicycleQuotes[0].CoverStartDate" ng-change="ChangeCoverStartDate()" ng-options="option.Id as option.Name for option in CoverStartDateOptions" required>
+                            <option value="">Choose a date</option>
+                        </select>
+                    </div>
+
+                    <div class="">
+                        <label>Enter your date of birth:</label>
+                        <div class="">
+                            <div class="">
+                                <select class="" ng-model="DateOfBirthDay" ng-disabled="!Basket.BicycleQuotes[0].CoverStartDate" ng-change="CheckDateOfBirth()" integer>
+                                    <option value="">Day</option>
+                                    <option ng:repeat="day in DayOptions" value="{{day.id}}" >{{day.name}}</option>
                                 </select>
                             </div>
-                            <div class="col-auto">
-                                <button type="button" class="btn btn-primary mb-2" ng-click="AddBicycle()" ng-disabled="IsAddToQuoteDisabled">Add to Quote</button>
+                            <div class="">
+                                <select class="" ng-model="DateOfBirthMonth" ng-disabled="!Basket.BicycleQuotes[0].CoverStartDate" ng-change="CheckDateOfBirth()" integer>
+                                    <option value="">Month</option>
+                                    <option ng:repeat="month in MonthOptions" value="{{month.id}}" >{{month.name}}</option>
+                                </select>
+                            </div>
+                            <div class="">
+                                <select class="" ng-model="DateOfBirthYear" ng-disabled="!Basket.BicycleQuotes[0].CoverStartDate" ng-change="CheckDateOfBirth()" integer>
+                                    <option value="">Year</option>
+                                    <option ng:repeat="year in DateOfBirthYearOptions" value="{{year.id}}" >{{year.name}}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>{{ Basket.BicycleQuotes[0].DateOfBirth }}</lable><br/>
+                                <label>{{ DateOfBirth1 }}</label><br/>
+                                <label>{{ DateOfBirth2 }}</label><br/>
+                            </div>
+                            <div class="">
+                                <label>Age:</label>
+                                <label>{{Basket.BicycleQuotes[0].Age}}</label>
                             </div>
                         </div>
                     </div>
-                    <!--BICYLE SECTION END-->
-                </div>                   
 
-                <div class="card p-2 my-1">
-                    <label>Enter the value of any accessories you wish to insure:</label>
-                    <div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">&pound;</div>
-                            </div>
-                            <input type="text" class="form-control" ng-model="Basket.BicycleQuotes[0].AccessoriesValue" ng-blur="AccessoriesValueBlur()" placeholder="250 as standard" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card p-2 my-1">
-                    <label>Enter the value of any additional wheelsets you wish to insure:</label>
-                    <div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">&pound;</div>
-                            </div>
-                            <input type="text" class="form-control" ng-model="Basket.BicycleQuotes[0].WheelsetValue" ng-blur="WheelsetValueBlur()" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card p-2 my-1">
-                    <label>Value of helmets, clothing and wetsuits:</label>
-                    <div>
-                        <div class="form-check form-check-inline" ng-repeat="HelmetAndClothingValue in HelmetAndClothingValueOptions">
-                            <input class="form-check-input" type="radio" id="radio-helmetandclothingvalue-{{HelmetAndClothingValue.id}}" value="{{HelmetAndClothingValue.value}}" ng-model="Basket.BicycleQuotes[0].HelmetAndClothingValue" />
-                            <label class="form-check-label" for="radio-helmetandclothingvalue-{{HelmetAndClothingValue.id}}">{{HelmetAndClothingValue.value}}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card p-2 my-1">
-                    <label>Select your level of cover:</label>
-                    <div>
-                        <div class="form-check form-check-inline" ng-repeat="TypeOfCover in TypeOfCoverValueOptions">
-                            <input class="form-check-input" type="radio" id="radio-typeofcover-{{TypeOfCover.id}}" value="{{TypeOfCover.id}}" ng-model="Basket.BicycleQuotes[0].TypeOfCover" />
-                            <label class="form-check-label" for="radio-typeofcover-{{TypeOfCover.id}}">{{TypeOfCover.value}}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card p-2 my-1">
-                    <label>How many bicycle claims in the last 3 years:</label>
-                    <div>
-                        <div class="form-check form-check-inline" ng-repeat="Claim in ClaimOptions">
-                            <input class="form-check-input" type="radio" id="radio-claims-{{Claim.id}}" value="{{Claim.id}}" ng-model="Basket.BicycleQuotes[0].NumberOfClaimsInLastThreeYears" />
-                            <label class="form-check-label" for="radio-claims-{{Claim.id}}">{{Claim.value}}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card p-2 my-1">
-                    <div class="row">
-                        <div class="col-auto">
-                            <label>Select Cover Start Date:</label>
-                            <select class="form-control" ng-model="Basket.BicycleQuotes[0].CoverStartDate" ng-change="ChangeCoverStartDate()" ng-options="option.Id as option.Name for option in CoverStartDateOptions" required>
-                                <option value="">Choose a date</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card p-2 my-1">
-                    <label>Enter your date of birth:</label>
-                    <div class="form-row align-items-center">
-                        <div class="col-auto">
-                            <select class="form-control" ng-model="DateOfBirthDay" ng-disabled="!Basket.BicycleQuotes[0].CoverStartDate" ng-change="CheckDateOfBirth()" integer>
-                                <option value="">Day</option>
-                                <option ng:repeat="day in DayOptions" value="{{day.id}}" >{{day.name}}</option>
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                            <select class="form-control" ng-model="DateOfBirthMonth" ng-disabled="!Basket.BicycleQuotes[0].CoverStartDate" ng-change="CheckDateOfBirth()" integer>
-                                <option value="">Month</option>
-                                <option ng:repeat="month in MonthOptions" value="{{month.id}}" >{{month.name}}</option>
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                            <select class="form-control" ng-model="DateOfBirthYear" ng-disabled="!Basket.BicycleQuotes[0].CoverStartDate" ng-change="CheckDateOfBirth()" integer>
-                                <option value="">Year</option>
-                                <option ng:repeat="year in DateOfBirthYearOptions" value="{{year.id}}" >{{year.name}}</option>
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                            <label>Age:</label>
-                            <label>{{Basket.BicycleQuotes[0].Age}}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card p-2 my-1">
-                    <label>Please confirm the following statements:</label>
-                    <div>
-                        <ul>
-                            <li><p>I am a resident in the UK.</p></li>
-                            <li><p>I have never been convicted of a criminal offence which is required to be disclosed under the rehabilitation of offenders act at the date of this insurance application.</p></li>
-                            <li><p>I have never had a policy cancelled, voided or renewal refused.</p></li>
-                            <li><p>I understand the security requirements of this policy, for a user friendly guide <a target="_blank" href="http://www.yellowjersey.co.uk/bicycle-locks-and-shed-padlocks/">click here</a>.</p></li>
-                        </ul>
+                    <div class="">
+                        <label>Please confirm the following statements:</label>
                         <div>
-                            <input type="checkbox" ng-model="Basket.BicycleQuotes[0].Statments" ng-true-value="true" ng-false-value="false" ng-required="StatementRequired" />
-                            <label for="Statments">I agree to the above statements.</label>
+                            <ul>
+                                <li><p>I am a resident in the UK.</p></li>
+                                <li><p>I have never been convicted of a criminal offence.</p></li>
+                                <li><p>I have never had a policy cancelled, voided or renewal refused.</p></li>
+                            </ul>
+                            <div>
+                                <input id="agreeToStatments" type="checkbox" ng-model="Basket.BicycleQuotes[0].Statments" ng-true-value="true" ng-false-value="false" ng-required="StatementRequired" />
+                                <label for="agreeToStatments">I agree to the above statements.</label>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div>
-                    <button id="btnBicycleNewBusinessSaveForLater" class="btn btn-primary" ng-click="SaveForLater()" ng-disabled="Proccessing">Save for later</button>
-                    <button id="btnBicycleNewBusinessProceed" class="btn btn-primary" ng-click="Proceed()" ng-disabled="Proccessing">Proceed</button>
+                    <div ng-if="Basket.BicycleQuotes[0].Statments">
+                        <p style="color: #00CC00;">You have agreed to the statements above</p>
+                    </div>
+                </form>
+                <div class="debugging-container" ng-show="debugging">
+                    <dir class="debugging-content">
+                        <pre>BASKET >> {{Basket | json}}</pre>
+                    </dir>
                 </div>
-
-                <div ng-if="Basket.BicycleQuotes[0].Statments">
-                    <p style="color: red;">Yay</p>
-                </div>
-            </form>
-                
-            <div class="debugging-info" ng-show="debugging">
-                <pre>BASKET >> {{Basket | json}}</pre>
             </div>
         </div>
     </body>
